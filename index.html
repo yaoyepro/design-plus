@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Design+ 设计灵感库 | 瑶叶</title>
+<meta name="description" content="瑶叶设计灵感库：36 个设计灵感网站，按 9 个方向整理进一个入口。翻阅、预览、一键打开。">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<script>
+  (function () {
+    var t = null; try { t = localStorage.getItem('designplus.theme'); } catch (e) {}
+    if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = t;
+    document.documentElement.classList.add('js');
+  })();
+</script>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="atmos" aria-hidden="true">
+  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span>
+  <span class="aura" id="auraA"></span><span class="aura" id="auraB"></span>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="shell">
+  <header class="meta">
+    <a class="brand" href="./" aria-label="瑶叶设计灵感库"><svg class="brand-mark" viewBox="0 0 200 200" aria-hidden="true"><use href="#yy-logo"/></svg><span class="brand-name">瑶叶<b>设计灵感库</b></span></a>
+    <span class="meta-r"><a class="mono meta-link" href="https://x.com/yanliudreamer/status/2110649301257060368" target="_blank" rel="noopener">部分收录自 <em>@Dreameryanyan</em></a></span>
+  </header>
+
+  <div class="cmd glass" role="search">
+    <button class="stack-chip" id="stackChip" type="button" title="清空筛选"><span>The stack</span><b id="stackCount">36</b></button>
+    <label class="cmd-field">
+      <svg class="i" aria-hidden="true"><use href="#i-magnifying-glass"/></svg>
+      <span class="sr-only">搜索站点</span>
+      <input id="q" type="search" placeholder="找下一个兔子洞，试试「字体」「深色」「落地页」" autocomplete="off" spellcheck="false">
+      <kbd class="mono">/</kbd>
+    </label>
+    <div class="seg" role="tablist" aria-label="视图">
+      <span class="seg-ind" aria-hidden="true"></span>
+      <button role="tab" type="button" id="vOrbit" aria-selected="true" title="漂浮 (G)"><svg class="i"><use href="#i-stack"/></svg><span class="sr-only">漂浮视图</span></button>
+      <button role="tab" type="button" id="vGrid" aria-selected="false" title="网格 (G)"><svg class="i"><use href="#i-squares-four"/></svg><span class="sr-only">网格视图</span></button>
+    </div>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="切换深浅色"><svg class="i sun"><use href="#i-sun"/></svg><svg class="i moon"><use href="#i-moon"/></svg></button>
+  </div>
+
+  <main class="studio" id="studio" data-view="orbit">
+    <section class="headline" aria-live="polite">
+      <h1 class="brand-title"><span class="bt-en">Design<i>+</i></span><span class="bt-zh">设计灵感库</span></h1>
+      <p class="mono kicker" id="kicker">36 sites. One door.</p>
+      <p class="ghostline" id="ghost" aria-hidden="true"></p>
+    </section>
+
+    <div class="stage" id="stage">
+      <div class="rig" id="rig"></div>
+    </div>
+
+    <aside class="info glass" id="info" aria-live="polite">
+      <div class="info-top mono"><span id="iNum">01 / 036</span><a id="iDomain" href="#" target="_blank" rel="noopener">mobbin.com <svg class="i"><use href="#i-arrow-up-right"/></svg></a></div>
+      <div class="info-body" id="iBody">
+        <p class="mono info-tag" id="iTag"></p>
+        <h2 class="info-name" id="iName"></h2>
+        <p class="info-line" id="iLine"></p>
+        <p class="info-desc" id="iDesc"></p>
+        <p class="info-mood"><span class="mono">适合</span><span id="iMood"></span></p>
+      </div>
+      <div class="info-act">
+        <button class="btn ghost" id="iMore" type="button">进入工作室</button>
+        <a class="btn dark" id="iGo" href="#" target="_blank" rel="noopener">打开 <svg class="i"><use href="#i-arrow-up-right"/></svg></a>
+      </div>
+    </aside>
+
+    <p class="mono hint" id="hint">拖动或滚轮翻阅，回车进入，G 切换网格</p>
+    <p class="empty" id="empty" hidden>没有找到。换个词，或者 <button type="button" id="clearQ">清空搜索</button></p>
+  </main>
+
+  <nav class="dock glass" aria-label="分类">
+    <div class="cats" role="tablist" id="cats">
+      <span class="cats-ind" aria-hidden="true"></span>
+    </div>
+    <span class="dock-count mono" id="dockCount">01 / 36</span>
+    <button class="btn dark open-set" id="openSet" type="button">打开这一组 <b id="openN">36</b><svg class="i"><use href="#i-arrow-up-right"/></svg></button>
+  </nav>
+</div>
+
+<div class="room" id="room" role="dialog" aria-modal="true" aria-labelledby="rName" hidden>
+  <div class="room-panel glass" id="roomPanel" tabindex="-1">
+    <header class="room-head">
+      <span class="mono" id="rCrumb">Site 001 / Mobbin</span>
+      <span class="room-nav">
+        <button class="icon-btn sm" id="rPrev" type="button" aria-label="上一个"><svg class="i"><use href="#i-arrow-left"/></svg></button>
+        <button class="icon-btn sm" id="rNext" type="button" aria-label="下一个"><svg class="i"><use href="#i-arrow-right"/></svg></button>
+        <button class="icon-btn sm" id="rClose" type="button" aria-label="关闭"><svg class="i"><use href="#i-x"/></svg></button>
+      </span>
+    </header>
+    <div class="room-grid" id="roomGrid">
+      <div class="room-main">
+        <div class="viewport-wrap" id="vpWrap">
+          <div class="window" id="win">
+            <div class="win-bar"><i></i><i></i><i></i><span class="mono win-url" id="rUrl">mobbin.com</span><span class="mono win-live">Live capture</span></div>
+            <div class="win-view" id="winView"><div class="win-page" id="winPage"></div></div>
+            <div class="win-foot mono"><span id="rFrame">001 / Home</span><span id="rPct">Scroll 0%</span></div>
+          </div>
+        </div>
+        <div class="related" id="related"></div>
+      </div>
+      <div class="room-side">
+        <p class="mono kicker">The control room</p>
+        <h2 class="room-title" id="rHead"></h2>
+        <p class="room-name"><span id="rName">Mobbin</span><span class="room-tag" id="rTag"></span></p>
+        <p class="room-line" id="rLine"></p>
+        <p class="room-desc" id="rDesc"></p>
+        <div class="knobs" id="knobs">
+          <label class="knob"><span class="mono">Scroll <i>滚动</i></span><output class="mono" id="oScroll">0.00</output><input type="range" id="kScroll" min="0" max="1" step="0.001" value="0"></label>
+          <label class="knob"><span class="mono">Zoom <i>放大</i></span><output class="mono" id="oZoom">1.00</output><input type="range" id="kZoom" min="1" max="2" step="0.001" value="1"></label>
+          <label class="knob"><span class="mono">Float <i>漂浮</i></span><output class="mono" id="oTilt">0.00</output><input type="range" id="kTilt" min="0" max="1" step="0.001" value="0"></label>
+        </div>
+        <p class="mono room-src"><span>Source</span><a id="rSrc" href="#" target="_blank" rel="noopener">mobbin.com</a></p>
+        <div class="room-act">
+          <a class="btn dark lg" id="rGo" href="#" target="_blank" rel="noopener"><span id="rGoTxt">打开 mobbin.com</span><svg class="i"><use href="#i-arrow-up-right"/></svg></a>
+          <p class="mono room-keys"><kbd>Enter</kbd> 打开 <kbd>←</kbd><kbd>→</kbd> 切换 <kbd>Esc</kbd> 返回</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="yy" id="yy">
+  <div class="yy-pop glass" id="yyPop" role="dialog" aria-label="关注瑶叶" data-tab="xhs">
+    <div class="yy-head">
+      <img class="yy-av" src="assets/yy-avatar.webp" alt="" width="64" height="64">
+      <div><p class="yy-name">瑶叶 <svg class="yy-leaf" viewBox="0 0 200 200" aria-hidden="true"><use href="#yy-logo"/></svg></p><p class="yy-bio">9 年大厂营销运营操盘手 x AI 探索者</p></div>
+    </div>
+    <div class="yy-tabs" role="tablist" aria-label="联系方式">
+      <span class="yy-ind" aria-hidden="true"></span>
+      <button type="button" role="tab" data-tab="xhs" class="on" aria-selected="true">小红书</button>
+      <button type="button" role="tab" data-tab="dy" aria-selected="false">抖音</button>
+      <button type="button" role="tab" data-tab="mail" aria-selected="false">邮箱</button>
+    </div>
+    <div class="yy-panes">
+      <div class="yy-pane" data-pane="xhs">
+        <div class="yy-qr"><img src="assets/qr-xhs.png" alt="小红书二维码：瑶叶" width="448" height="448" loading="lazy"></div>
+        <p class="yy-cap">打开小红书，扫一扫</p>
+        <button type="button" class="yy-row" data-copy="606101074"><span class="mono">小红书号</span><b>606101074</b><svg class="i c"><use href="#i-copy"/></svg><svg class="i k"><use href="#i-check"/></svg></button>
+      </div>
+      <div class="yy-pane" data-pane="dy">
+        <div class="yy-qr round"><img src="assets/qr-douyin.png" alt="抖音二维码：瑶叶" width="480" height="480" loading="lazy"></div>
+        <p class="yy-cap">打开抖音，扫一扫</p>
+        <button type="button" class="yy-row" data-copy="87370596702"><span class="mono">抖音号</span><b>87370596702</b><svg class="i c"><use href="#i-copy"/></svg><svg class="i k"><use href="#i-check"/></svg></button>
+      </div>
+      <div class="yy-pane" data-pane="mail">
+        <div class="yy-mail"><span class="yy-env"><svg class="i"><use href="#i-envelope-simple"/></svg></span><p>合作、投稿，或推荐新的灵感网站，欢迎来信。</p></div>
+        <a class="btn dark yy-send" href="mailto:yaoyaoye822@163.com?subject=Design%2B">写邮件<svg class="i"><use href="#i-arrow-up-right"/></svg></a>
+        <button type="button" class="yy-row" data-copy="yaoyaoye822@163.com"><span class="mono">Email</span><b>yaoyaoye822@163.com</b><svg class="i c"><use href="#i-copy"/></svg><svg class="i k"><use href="#i-check"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <button class="yy-btn" id="yyBtn" type="button" aria-expanded="false" aria-controls="yyPop" aria-label="小瑶叶：关注瑶叶">
+    <span class="yy-fig" aria-hidden="true"><span class="yy-shadow"></span><span class="yy-hop"><span class="yy-body"><img class="yy-a" src="assets/yy-wave.webp" alt="" width="360" height="347"><img class="yy-b" src="assets/yy-idea.webp" alt="" width="360" height="360"></span></span></span>
+    <span class="yy-bubble" aria-hidden="true">Hi，关注我呀</span>
+  </button>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="yy-logo" viewBox="0 0 200 200"><path class="lf" d="M 147.97 28.92 L 144.96 27.91 L 127.88 34.28 L 97.57 39.97 L 76.81 46.67 L 51.69 60.57 L 29.42 81.33 L 16.86 101.09 L 11.00 121.68 L 12.00 136.92 L 21.72 167.57 L 22.55 185.65 L 25.07 186.15 L 33.94 180.29 L 52.19 163.71 L 64.25 147.81 L 70.44 134.24 L 71.45 124.03 L 67.77 111.97 L 60.40 100.42 L 48.84 88.19 L 57.72 89.37 L 65.76 93.39 L 73.46 100.25 L 79.65 109.46 L 96.23 89.37 L 133.24 59.73 L 130.06 67.93 L 124.36 76.31 L 101.26 101.09 L 91.54 113.81 L 85.01 126.21 L 77.31 146.63 L 70.44 158.52 L 59.73 170.75 L 46.00 182.80 L 65.76 184.14 L 79.99 182.47 L 92.38 178.45 L 105.78 170.25 L 109.29 165.05 L 102.26 138.10 L 103.60 135.25 L 129.89 147.97 L 132.40 147.47 L 137.59 141.78 L 151.83 118.34 L 158.19 94.06 L 158.69 76.14 L 156.85 58.56 L 152.83 41.31 Z"/><path class="lf" d="M 110.63 144.79 L 109.46 146.97 L 117.67 182.30 L 119.34 183.31 L 121.52 182.64 L 127.71 173.93 L 135.42 182.80 L 137.43 183.47 L 140.10 182.30 L 141.28 179.96 L 140.94 177.78 L 134.75 169.07 L 145.46 165.22 L 146.13 163.88 L 145.63 162.04 L 112.81 144.63 Z"/><path class="sp" d="M 171.59 14.52 L 169.74 13.85 L 167.57 13.85 L 165.05 15.02 L 154.84 28.58 L 153.84 30.93 L 153.84 32.94 L 154.67 35.11 L 156.35 36.79 L 157.69 37.46 L 159.86 37.62 L 162.54 36.62 L 172.92 23.39 L 174.26 20.54 L 174.26 18.54 L 173.09 15.86 Z"/><path class="sp" d="M 188.00 38.80 L 185.99 36.95 L 183.98 36.29 L 182.13 36.29 L 165.72 43.49 L 163.71 46.00 L 163.38 47.00 L 163.71 50.35 L 164.38 51.52 L 166.39 53.20 L 169.58 53.70 L 185.48 47.17 L 187.16 46.16 L 188.67 43.99 L 189.00 41.81 Z"/></symbol></svg>
+
+<div class="toast glass" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/icons.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
