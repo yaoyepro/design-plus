@@ -3,6 +3,16 @@
   'use strict';
   const SITES = window.EYEWASH_SITES;
   const META = {
+    motionsites: { h: ['Motion first.', 'Prompt next.'],       hue: '#d9d3f2' },
+    reactbits:   { h: ['Drop it in.', 'Watch it move.'],       hue: '#d2e6e9' },
+    uiverse:     { h: ['Open source.', 'Pure CSS.'],           hue: '#e4dcf1' },
+    aceternity:  { h: ['Polish that', 'ships today.'],         hue: '#d4d9e6' },
+    animejs:     { h: ['Time it.', 'Then tune it.'],           hue: '#f1dccf' },
+    aura:        { h: ['Describe it.', 'See it built.'],       hue: '#d6e2f2' },
+    supahero:    { h: ['First fold.', 'Best foot.'],           hue: '#f0e1cc' },
+    seesaw:      { h: ['Real sites.', 'Fresh picks.'],         hue: '#d8ead7' },
+    saaspo:      { h: ['SaaS pages', 'that convert.'],         hue: '#d3dcf0' },
+    searchsystem:{ h: ['Charts with', 'a point of view.'],     hue: '#ebe1d4' },
     godly:       { h: ['Off the grid.', 'On purpose.'],        hue: '#ecd0e2' },
     minimal:     { h: ['Less, but', 'better.'],                hue: '#e7e5dd' },
     dark:        { h: ['Lights off.', 'Detail on.'],           hue: '#cdcad9' },
@@ -41,7 +51,7 @@
     threejs:     { h: ['Flat screen.', 'Deep space.'],         hue: '#cfdde8' }
   };
   const GROUPS = [
-    ['all', '全部'], ['web', '网页灵感'], ['product', '产品界面'], ['motion', '动效交互'], ['visual', '视觉素材'],
+    ['all', '全部'], ['pick', '精选'], ['web', '网页灵感'], ['product', '产品界面'], ['motion', '动效交互'], ['visual', '视觉素材'],
     ['brand', '品牌排版'], ['ai', 'AI 工作流'], ['ui', '组件图标'], ['community', '资源社区'], ['space', '空间设计']
   ];
   const CW = 300, CH = 264;
@@ -109,6 +119,9 @@
   let dragging = false;
   let px = 0, py = 0, tx = 0, ty = 0;
   let intro = true;
+  const SHAPES = [['arc', '弧廊'], ['ring', '环幕'], ['helix', '螺旋'], ['wave', '波浪'], ['fan', '扇面']];
+  let shape = store.get('shape', 'arc');
+  if (!SHAPES.some(x => x[0] === shape)) shape = 'arc';
 
   function hay(s) {
     return [s.name, s.domain, s.tag, s.mood, s.line, s.desc, s.kw, s.groups.join(' '),
@@ -124,23 +137,60 @@
 
   /* Geometry */
   function stageBox() { return { w: stage.clientWidth, h: stage.clientHeight }; }
+  const DEG = 180 / Math.PI;
   function orbitT(rank, n, g) {
     const narrow = g.w < 700;
     let d = rank - pos;
     if (n > 1) { d = mod(d + n / 2, n) - n / 2; } else d = 0;
-    const ad = Math.abs(d), s = Math.sign(d);
+    const ad = Math.abs(d), s = Math.sign(d), a1 = Math.min(ad, 1);
     const cx = narrow ? g.w / 2 : g.w * 0.4;
     const cy = narrow ? g.h * 0.52 : g.h * 0.57;
-    const S1 = narrow ? 156 : 214, S2 = narrow ? 44 : 96;
-    const x = s * (ad < 1 ? ad * S1 : S1 + (ad - 1) * S2);
-    const y = Math.pow(ad, 1.25) * (narrow ? 8 : 18);
-    const z = -ad * (narrow ? 130 : 160) + (ad < 1 ? (1 - ad) * 60 : 0);
-    const ry = clamp(-s * Math.min(ad, 1) * 32 - d * 3, -48, 48);
-    const sc = 1 - Math.min(ad, 5) * 0.025;
-    const lim = Math.min(4.4, n / 2 + 0.01);
-    const op = ad > lim ? 0 : ad > lim - 1.1 ? (lim - ad) / 1.1 : 1;
+    let x = 0, y = 0, z = 0, rx = 0, ry = 0, rz = 0, sc = 1, lim = 4.4, fade = 1.1;
+    if (shape === 'ring') {
+      const m = clamp(n, 6, 10), th = d * 2 * Math.PI / m, R = narrow ? 240 : 500;
+      x = Math.sin(th) * R;
+      z = (Math.cos(th) - 1) * R;
+      y = (1 - Math.cos(th)) * (narrow ? 18 : 40);
+      ry = th * DEG;
+      lim = m / 4 + 0.35; fade = 1.3;
+    } else if (shape === 'helix') {
+      const th = d * Math.PI / 4.2, R = narrow ? 190 : 320;
+      x = Math.sin(th) * R;
+      z = (Math.cos(th) - 1) * R - ad * 30;
+      y = d * (narrow ? 40 : 60);
+      ry = th * DEG * 0.85;
+      rx = -d * 4;
+      sc = 1 - Math.min(ad, 4) * 0.03;
+      lim = 3; fade = 1.1;
+    } else if (shape === 'wave') {
+      const step = narrow ? CW * 0.6 : CW * 0.8, amp = narrow ? 30 : 64;
+      x = d * step;
+      y = Math.sin(d * 1.25) * amp * a1;
+      rz = Math.cos(d * 1.25) * 7 * a1 * s;
+      z = -a1 * 110 - ad * 24;
+      sc = 1 - a1 * 0.1;
+      lim = narrow ? 2.6 : 3.4;
+    } else if (shape === 'fan') {
+      const ph = d * (narrow ? 10 : 7.5) / DEG, Rf = narrow ? 640 : 860;
+      x = Math.sin(ph) * Rf;
+      y = (1 - Math.cos(ph)) * Rf + a1 * 14;
+      rz = ph * DEG;
+      ry = -d * 3;
+      z = -ad * 34 + (1 - a1) * 40;
+      sc = 1 - a1 * 0.06;
+      lim = 4.4; fade = 1.6;
+    } else {
+      const S1 = narrow ? 156 : 214, S2 = narrow ? 44 : 96;
+      x = s * (ad < 1 ? ad * S1 : S1 + (ad - 1) * S2);
+      y = Math.pow(ad, 1.25) * (narrow ? 8 : 18);
+      z = -ad * (narrow ? 130 : 160) + (ad < 1 ? (1 - ad) * 60 : 0);
+      ry = clamp(-s * a1 * 32 - d * 3, -48, 48);
+      sc = 1 - Math.min(ad, 5) * 0.025;
+    }
+    lim = Math.min(lim, n / 2 + 0.01);
+    const op = ad > lim ? 0 : ad > lim - fade ? (lim - ad) / fade : 1;
     return {
-      t: `translate3d(${(cx - CW / 2 + x).toFixed(2)}px,${(cy - CH / 2 + y).toFixed(2)}px,${z.toFixed(2)}px) rotateY(${ry.toFixed(2)}deg) scale(${sc.toFixed(4)})`,
+      t: `translate3d(${(cx - CW / 2 + x).toFixed(2)}px,${(cy - CH / 2 + y).toFixed(2)}px,${z.toFixed(2)}px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) rotateZ(${rz.toFixed(2)}deg) scale(${sc.toFixed(4)})`,
       o: op, z: 1000 - Math.round(ad * 100), ad
     };
   }
@@ -491,6 +541,47 @@
   $('#vOrbit').addEventListener('click', () => view !== 'orbit' && setView('orbit'));
   $('#vGrid').addEventListener('click', () => view !== 'grid' && setView('grid'));
 
+  /* Orbit shapes: the same cards re-form into arc, ring, helix, wave or fan */
+  const shapesEl = $('#shapes'), shapesInd = shapesEl.querySelector('.shapes-ind');
+  SHAPES.forEach(([id, zh]) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.dataset.shape = id;
+    b.textContent = zh;
+    b.setAttribute('aria-pressed', String(id === shape));
+    b.addEventListener('click', () => setShape(id));
+    shapesEl.appendChild(b);
+  });
+  function moveShapeInd() {
+    const b = shapesEl.querySelector(`[data-shape="${shape}"]`);
+    const w = shapesEl.clientWidth - 6;
+    shapesInd.style.setProperty('--l-in', (b.offsetLeft - 3) + 'px');
+    shapesInd.style.setProperty('--r-in', (w - b.offsetLeft + 3 - b.offsetWidth) + 'px');
+  }
+  function setShape(id) {
+    if (id === shape) return;
+    shape = id;
+    store.set('shape', id);
+    studio.dataset.shape = id;
+    shapesEl.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.shape === id)));
+    moveShapeInd();
+    if (view !== 'orbit') setView('orbit');
+    studio.classList.remove('live');
+    studio.classList.add('morph');
+    clearTimeout(setShape.t);
+    setShape.t = setTimeout(() => studio.classList.remove('morph'), 1500);
+    stagger(22);
+    render();
+  }
+  function cycleShape(step) {
+    const i = SHAPES.findIndex(x => x[0] === shape);
+    setShape(SHAPES[mod(i + step, SHAPES.length)][0]);
+  }
+  studio.dataset.shape = shape;
+  requestAnimationFrame(moveShapeInd);
+  addEventListener('resize', moveShapeInd);
+  if (document.fonts) document.fonts.ready.then(moveShapeInd);
+
   /* Theme with a circular reveal */
   $('#themeBtn').addEventListener('click', e => {
     const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
@@ -576,7 +667,7 @@
   }
 
   function related(si) {
-    const g = SITES[si].groups;
+    const g = SITES[si].groups.filter(x => x !== 'pick');
     const same = SITES.map((_, i) => i).filter(i => i !== si && SITES[i].groups.some(x => g.includes(x)));
     const rest = SITES.map((_, i) => i).filter(i => i !== si && !same.includes(i));
     const rot = k => same.slice(k).concat(same.slice(0, k));
@@ -720,6 +811,7 @@
     }
     if (e.key === '/') { e.preventDefault(); qEl.focus(); return; }
     if (e.key === 'g' || e.key === 'G') { setView(view === 'orbit' ? 'grid' : 'orbit'); return; }
+    if (e.key === 's' || e.key === 'S') { cycleShape(e.shiftKey ? -1 : 1); return; }
     if (/^[0-9]$/.test(e.key)) {
       const si = e.key === '0' ? 9 : +e.key - 1;
       if (SITES[si]) { if (view === 'orbit' && order.includes(si) && si !== focusIdx) goTo(si); else openRoom(si); }
@@ -821,7 +913,7 @@
   })();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { moveCatInd(); render(); });
   if (!store.get('hinted', false) && fine.matches) {
-    setTimeout(() => toast('提示：按 / 搜索，← → 翻阅，G 切换网格', 3600), 1800);
+    setTimeout(() => toast('提示：按 / 搜索，← → 翻阅，S 换形态，G 切换网格', 3600), 1800);
     store.set('hinted', true);
   }
 })();

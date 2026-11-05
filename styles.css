@@ -179,6 +179,7 @@ kbd { font-family: var(--mono); font-size: 11px; padding: 2px 7px; border-radius
   transition-delay: var(--delay, 0ms);
 }
 .studio.live .card { transition-duration: 0s, .5s; transition-delay: 0ms; }
+.studio.morph .card { transition: transform 1.25s cubic-bezier(.16, 1, .3, 1), opacity .8s var(--ease); transition-delay: var(--delay, 0ms); }
 .card-glass {
   position: relative; height: 100%; border-radius: var(--r); background: var(--card); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), 0 0 0 1px var(--line), var(--shadow);
   padding: 7px; transition: transform .6s var(--ease), box-shadow .5s;
@@ -224,7 +225,15 @@ kbd { font-family: var(--mono); font-size: 11px; padding: 2px 7px; border-radius
 .info-act { display: flex; gap: 8px; margin-top: 16px; }
 .info-act .btn { flex: 1; }
 
-.hint { position: absolute; left: 12px; bottom: 6px; margin: 0; color: var(--muted); z-index: 3; transition: opacity .5s; }
+.stage-foot { position: absolute; left: 8px; bottom: 4px; z-index: 3; display: flex; align-items: center; gap: 14px; transition: opacity .5s, transform .6s var(--ease); }
+.hint { margin: 0; color: var(--muted); transition: opacity .5s; }
+.shapes { position: relative; display: flex; padding: 3px; border-radius: 13px; }
+.shapes button { position: relative; z-index: 1; height: 30px; padding: 0 12px; border-radius: 10px; font-size: 12.5px; font-weight: 520; letter-spacing: .04em; color: var(--muted); transition: color .3s; white-space: nowrap; }
+.shapes button:hover { color: var(--ink); }
+.shapes button[aria-pressed='true'] { color: var(--chip-ink); }
+.shapes button:active { transform: scale(.96); }
+.shapes-ind { position: absolute; inset: 3px; background: var(--chip); clip-path: inset(0 var(--r-in, 100%) 0 var(--l-in, 0px) round 10px); transition: clip-path .55s var(--spring); }
+.studio[data-view='grid'] .stage-foot { opacity: 0; pointer-events: none; transform: translateY(8px); }
 .empty { position: absolute; left: 0; right: 0; top: 46%; text-align: center; color: var(--muted); z-index: 4; }
 .empty button { text-decoration: underline; text-underline-offset: 3px; color: var(--ink); }
 
@@ -358,6 +367,8 @@ html.vt * { transition: none !important; }
   .studio[data-view='grid'] .info { display: none; }
   .info-body { min-height: 0; }
   .hint { display: none; }
+  .stage-foot { position: relative; left: auto; bottom: auto; justify-content: center; margin: 4px 0 6px; }
+  .shapes button { padding: 0 10px; }
   .dock { left: 10px; right: 10px; bottom: 10px; transform: none; max-width: none; gap: 6px; }
   .cats { flex: 1; overflow-x: auto; scrollbar-width: none; }
   .cats::-webkit-scrollbar { display: none; }
@@ -378,7 +389,7 @@ html.vt * { transition: none !important; }
 
 @media (prefers-reduced-motion: reduce) {
   .blob { animation: none; }
-  .card, .card-glass, .ghostline .w, .info, .info-body, .room, .room-panel, .room-grid, .seg-ind, .cats-ind { transition-duration: .01ms !important; transition-delay: 0ms !important; }
+  .card, .card-glass, .ghostline .w, .info, .info-body, .room, .room-panel, .room-grid, .seg-ind, .cats-ind, .shapes-ind, .studio.morph .card { transition-duration: .01ms !important; transition-delay: 0ms !important; }
   .card-media .tall { transition: opacity .2s; }
   .studio[data-view='grid'] .card:hover .tall { transform: none; opacity: 0; }
   .live-tag::before, .win-live::before { animation: none; }
