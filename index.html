@@ -8,9 +8,7 @@
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <script>
   (function () {
-    var t = null; try { t = localStorage.getItem('designplus.theme'); } catch (e) {}
-    if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    document.documentElement.dataset.theme = t;
+    document.documentElement.dataset.theme = 'light';
     document.documentElement.classList.add('js');
   })();
 </script>
@@ -43,7 +41,6 @@
       <button role="tab" type="button" id="vOrbit" aria-selected="true" title="漂浮 (G)"><svg class="i"><use href="#i-stack"/></svg><span class="sr-only">漂浮视图</span></button>
       <button role="tab" type="button" id="vGrid" aria-selected="false" title="网格 (G)"><svg class="i"><use href="#i-squares-four"/></svg><span class="sr-only">网格视图</span></button>
     </div>
-    <button class="icon-btn" id="themeBtn" type="button" aria-label="切换深浅色"><svg class="i sun"><use href="#i-sun"/></svg><svg class="i moon"><use href="#i-moon"/></svg></button>
   </div>
 
   <main class="studio" id="studio" data-view="orbit">
@@ -71,8 +68,6 @@
         <a class="btn dark" id="iGo" href="#" target="_blank" rel="noopener">打开 <svg class="i"><use href="#i-arrow-up-right"/></svg></a>
       </div>
     </aside>
-
-    <div class="stage-foot"><div class="shapes glass" id="shapes" role="group" aria-label="排列形态"><span class="shapes-ind" aria-hidden="true"></span></div><p class="mono hint" id="hint">拖动或滚轮翻阅，S 换形态，G 切换网格</p></div>
     <p class="empty" id="empty" hidden>没有找到。换个词，或者 <button type="button" id="clearQ">清空搜索</button></p>
   </main>
 

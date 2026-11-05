@@ -469,12 +469,14 @@
     catsInd.style.setProperty('--r-in', (w - b.offsetLeft - b.offsetWidth) + 'px');
   }
   function setCat(id) {
+    const changed = id !== cat;
     cat = id;
     catsEl.querySelectorAll('button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.cat === id)));
     moveCatInd();
     const b = catsEl.querySelector(`[data-cat="${id}"]`);
     if (catsEl.scrollWidth > catsEl.clientWidth) b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce.matches ? 'auto' : 'smooth' });
     applyFilter();
+    if (changed && view === 'orbit' && !reduce.matches && order.length > 1) cycleShape(1);
   }
   const qEl = $('#q');
   qEl.addEventListener('input', () => { query = qEl.value.trim(); applyFilter(); });
@@ -542,29 +544,13 @@
   $('#vGrid').addEventListener('click', () => view !== 'grid' && setView('grid'));
 
   /* Orbit shapes: the same cards re-form into arc, ring, helix, wave or fan */
-  const shapesEl = $('#shapes'), shapesInd = shapesEl.querySelector('.shapes-ind');
-  SHAPES.forEach(([id, zh]) => {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.dataset.shape = id;
-    b.textContent = zh;
-    b.setAttribute('aria-pressed', String(id === shape));
-    b.addEventListener('click', () => setShape(id));
-    shapesEl.appendChild(b);
-  });
-  function moveShapeInd() {
-    const b = shapesEl.querySelector(`[data-shape="${shape}"]`);
-    const w = shapesEl.clientWidth - 6;
-    shapesInd.style.setProperty('--l-in', (b.offsetLeft - 3) + 'px');
-    shapesInd.style.setProperty('--r-in', (w - b.offsetLeft + 3 - b.offsetWidth) + 'px');
-  }
+  /* No switcher UI: the stack re-forms on its own (new tab, idle pause, double-click, S key) */
   function setShape(id) {
     if (id === shape) return;
     shape = id;
     store.set('shape', id);
     studio.dataset.shape = id;
-    shapesEl.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.shape === id)));
-    moveShapeInd();
+    idleAt = performance.now();
     if (view !== 'orbit') setView('orbit');
     studio.classList.remove('live');
     studio.classList.add('morph');
@@ -578,27 +564,16 @@
     setShape(SHAPES[mod(i + step, SHAPES.length)][0]);
   }
   studio.dataset.shape = shape;
-  requestAnimationFrame(moveShapeInd);
-  addEventListener('resize', moveShapeInd);
-  if (document.fonts) document.fonts.ready.then(moveShapeInd);
-
-  /* Theme with a circular reveal */
-  $('#themeBtn').addEventListener('click', e => {
-    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-    const apply = () => { document.documentElement.dataset.theme = next; try { localStorage.setItem('designplus.theme', next); } catch (er) {} };
-    if (!document.startViewTransition || reduce.matches) { apply(); return; }
-    const r = e.currentTarget.getBoundingClientRect();
-    const x = r.left + r.width / 2, y = r.top + r.height / 2;
-    const rad = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
-    document.documentElement.classList.add('vt');
-    const t = document.startViewTransition(apply);
-    t.ready.then(() => {
-      document.documentElement.animate(
-        { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${rad}px at ${x}px ${y}px)`] },
-        { duration: 700, easing: 'cubic-bezier(.22,1,.36,1)', pseudoElement: '::view-transition-new(root)' }
-      );
-    });
-    t.finished.finally(() => document.documentElement.classList.remove('vt'));
+  let idleAt = performance.now();
+  const wake = () => { idleAt = performance.now(); };
+  ['pointermove', 'pointerdown', 'wheel', 'keydown', 'touchstart'].forEach(t => addEventListener(t, wake, { passive: true }));
+  setInterval(() => {
+    if (reduce.matches || document.hidden || intro || roomOpen || view !== 'orbit' || dragging || order.length < 4) return;
+    if (performance.now() - idleAt > 9000) cycleShape(1);
+  }, 1000);
+  stage.addEventListener('dblclick', e => {
+    if (view !== 'orbit' || e.target.closest('.card')) return;
+    cycleShape(1);
   });
 
   /* Open the current set in one go */
@@ -913,7 +888,7 @@
   })();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { moveCatInd(); render(); });
   if (!store.get('hinted', false) && fine.matches) {
-    setTimeout(() => toast('提示：按 / 搜索，← → 翻阅，S 换形态，G 切换网格', 3600), 1800);
+    setTimeout(() => toast('提示：按 / 搜索，← → 翻阅，停一会儿或双击空白处，卡片会换个队形', 3600), 1800);
     store.set('hinted', true);
   }
 })();
