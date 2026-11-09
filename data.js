@@ -122,7 +122,7 @@ window.EYEWASH_SITES = [
     desc: '打破常规的排版、夸张的字体、充满创意的交互与视觉效果。不一定能直接商用，但特别能打开思路。',
     quote: '限制创造力的，常常是我们对设计应该长什么样的想象。', use: '觉得自己的设计越来越四平八稳时。',
     kw: '实验 先锋 抽象 脑洞 夸张 brutalist 创意 冲击' },
-  { id: 'scrolltide', name: 'Scrolltide', url: 'https://scrolltide.co/', domain: 'scrolltide.co', tag: '滚动动画', groups: ['motion'], mood: '做一个会动的网站',
+  { id: 'scrolltide', name: 'Scrolltide', url: 'https://scrolltide.co/', domain: 'scrolltide.co', tag: '滚动动画', groups: ['motion', 'pick'], mood: '做一个会动的网站',
     line: '动画网站的提示词、模板与交互组件参考。',
     desc: '围绕滚动与动画网站整理的模板、组件和提示词，看完可以直接拿去和 AI 或开发同学沟通实现。',
     quote: '动效要讲清楚的，是内容出现的顺序。', use: '要做滚动叙事或动画首页，需要可落地的参考时。',
