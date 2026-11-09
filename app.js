@@ -48,7 +48,14 @@
     dbookmark:   { h: ['Every tool.', 'One shelf.'],           hue: '#dbe4e6' },
     ondesign:    { h: ['Share the work.', 'Hear back.'],       hue: '#e0e0ea' },
     bartlett:    { h: ['Space, drawn', 'on a screen.'],        hue: '#e4ddd2' },
-    threejs:     { h: ['Flat screen.', 'Deep space.'],         hue: '#cfdde8' }
+    threejs:     { h: ['Flat screen.', 'Deep space.'],         hue: '#cfdde8' },
+    navbar:      { h: ['First click.', 'Right door.'],         hue: '#dde0ee' },
+    pixabay:     { h: ['Find the track.', 'Set the mood.'],    hue: '#cfe6d6' },
+    freesound:   { h: ['Rain, wind,', 'the street.'],          hue: '#d3dfe6' },
+    soundlab:    { h: ['Tiny sounds.', 'Daily use.'],          hue: '#f1dccf' },
+    mixkit:      { h: ['Cut here.', 'Whoosh.'],                hue: '#e0d8f0' },
+    elevensfx:   { h: ['Describe it.', 'Hear it.'],            hue: '#d8e4ee' },
+    earshot:     { h: ['Code moves.', 'Sound follows.'],       hue: '#e4e2d8' }
   };
   const GROUPS = [
     ['all', '全部'], ['pick', '精选'], ['web', '网页灵感'], ['product', '产品界面'], ['motion', '动效交互'], ['visual', '视觉素材'],
