@@ -52,7 +52,7 @@
   };
   const GROUPS = [
     ['all', '全部'], ['pick', '精选'], ['web', '网页灵感'], ['product', '产品界面'], ['motion', '动效交互'], ['visual', '视觉素材'],
-    ['brand', '品牌排版'], ['ai', 'AI 工作流'], ['ui', '组件图标'], ['community', '资源社区'], ['space', '空间设计']
+    ['brand', '品牌排版'], ['sound', '声音'], ['ai', 'AI 工作流'], ['ui', '组件图标'], ['community', '资源社区'], ['space', '空间设计']
   ];
   const CW = 300, CH = 264;
 

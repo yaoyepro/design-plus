@@ -1,4 +1,4 @@
-/* Design+ 瑶叶设计灵感库: 46 sites in 9 groups plus a picks shelf. Original ten adapted from Dreameryanyan's post on X. */
+/* Design+ 瑶叶设计灵感库: 53 sites in 10 groups plus a picks shelf. Original ten adapted from Dreameryanyan's post on X. */
 window.EYEWASH_SITES = [
   /* 精选（同时归入各自分类） */
   { id: 'motionsites', name: 'MotionSites', url: 'https://motionsites.ai/', domain: 'motionsites.ai', tag: '动态首屏', groups: ['web', 'motion', 'ai', 'pick'], mood: '让首屏动起来',
@@ -248,5 +248,42 @@ window.EYEWASH_SITES = [
     line: '浏览交互式 3D 示例，探索网页的空间表达。',
     desc: '最流行的网页 3D 引擎，首页即是大量交互作品的入口，可以看到网页如何变成一个可以走进去的空间。',
     quote: '屏幕是平的，体验不一定。', use: '想在网页里加入 3D 或空间交互时。',
-    kw: 'three.js threejs 3d webgl 空间 交互 引擎 示例' }
+    kw: 'three.js threejs 3d webgl 空间 交互 引擎 示例' },
+
+  /* 新增：导航栏灵感与声音 */
+  { id: 'navbar', name: 'Navbar Gallery', url: 'https://navbar.gallery/', domain: 'navbar.gallery', tag: '导航栏', groups: ['web'], mood: '把入口做得顺手',
+    line: '集中浏览各种网站导航栏的设计与交互。',
+    desc: '导航是用户和页面的第一次握手。这里按样式收集了大量导航栏案例，吸顶、折叠、下拉和移动端形态都能对照着看。',
+    quote: '导航做得好，用户几乎感觉不到它。', use: '设计导航栏，纠结布局与交互方式时。',
+    kw: 'navbar navigation 导航 导航栏 菜单 menu header 顶部 吸顶 下拉' },
+  { id: 'pixabay', name: 'Pixabay Music', url: 'https://pixabay.com/music/', domain: 'pixabay.com', tag: '免费配乐', groups: ['sound'], mood: '给画面挑一段 BGM',
+    line: '30 多万首曲子，挑一段适合画面的 BGM。',
+    desc: '按情绪、风格和时长筛选的免费音乐库，可以直接试听下载，做视频、演示和网页背景音乐都很方便。',
+    quote: '画面选对了音乐，情绪就对了一半。', use: '视频或演示缺一段合适的背景音乐时。',
+    kw: 'pixabay music 音乐 bgm 配乐 背景音乐 免费 视频 版权' },
+  { id: 'freesound', name: 'Freesound', url: 'https://freesound.org/', domain: 'freesound.org', tag: '环境音', groups: ['sound'], mood: '补上雨声和街道',
+    line: '73 万条声音，补上雨声、风声、街道环境音。',
+    desc: '由社区上传的大型声音素材库，从自然环境音到城市噪声应有尽有，用来给画面增加真实的空间感。',
+    quote: '环境音不抢戏，却决定画面像不像真的。', use: '需要雨声、风声或街道环境音来铺底时。',
+    kw: 'freesound 音效 环境音 雨声 风声 街道 素材 sound effects 社区' },
+  { id: 'soundlab', name: 'Sound Effect Lab', url: 'https://soundeffect-lab.info/', domain: 'soundeffect-lab.info', tag: '日系音效', groups: ['sound'], mood: '挑几个常用的',
+    line: '支持日语搜索，2000 多种音效，挑常用的就行。',
+    desc: '日本站点，收录 2000 多种日常与界面音效，分类清晰，点击即可试听，常用的提示音和动作音都有。',
+    quote: '常用的那几个音效，值得放进收藏夹。', use: '给交互或视频补提示音、动作音时。',
+    kw: 'soundeffect lab 音效 日本 日语 提示音 效果音 ui sound 素材' },
+  { id: 'mixkit', name: 'Mixkit Transitions', url: 'https://mixkit.co/free-sound-effects/transition/', domain: 'mixkit.co', tag: '转场音效', groups: ['sound'], mood: '给转场配声音',
+    line: '专门给镜头切换配音效，不用注册。',
+    desc: 'Mixkit 的转场音效专区，嗖声、划过和冲击声分类整齐，试听后直接下载，不需要注册账号。',
+    quote: '一个转场音，能让两个画面接得更顺。', use: '剪辑里镜头切换显得生硬，想补一个过渡音时。',
+    kw: 'mixkit 转场 音效 transition whoosh 嗖 切换 剪辑 免费 无需注册' },
+  { id: 'elevensfx', name: 'ElevenLabs SFX', url: 'https://elevenlabs.io/sound-effects', domain: 'elevenlabs.io', tag: 'AI 生成音效', groups: ['sound', 'ai'], mood: '用文字生成声音',
+    line: '找不到合适的声音，直接用文字描述生成。',
+    desc: '输入一句话描述想要的声音，AI 就会生成对应音效，适合素材库里找不到的、很具体的场景声。',
+    quote: '找不到就描述它，让声音自己长出来。', use: '素材库里搜不到想要的声音时。',
+    kw: 'elevenlabs sound effects ai 音效 生成 文字转音效 文本 描述 配音' },
+  { id: 'earshot', name: 'Earshot', url: 'https://github.com/Leonxlnx/earshot', domain: 'github.com', tag: '代码音效', groups: ['sound', 'ai'], mood: '让代码动作有声音',
+    line: '配合 Claude Code，让 201 种代码生成音效跟着画面动作响。',
+    desc: '开源项目，为 Claude Code 的操作配上 201 种音效，让 AI 写代码的每一步都有声音反馈。',
+    quote: '界面会动之后，下一步就是让它出声。', use: '想给 AI 编程工具加声音反馈时。',
+    kw: 'earshot claude code 音效 github 开源 代码 声音 反馈 ai 编程' }
 ];
