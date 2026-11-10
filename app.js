@@ -362,9 +362,11 @@
 
   /* Drag, wheel and click on the stage */
   let down = null, moved = false, suppress = false;
+  const PX = e => window.__rot ? e.clientY : e.clientX;
+  const PY = e => window.__rot ? window.__rot - e.clientX : e.clientY;
   stage.addEventListener('pointerdown', e => {
     if (view !== 'orbit' || e.button !== 0 || !order.length) return;
-    down = { x: e.clientX, y: e.clientY, p: pos, t: performance.now(), lx: e.clientX, v: 0 };
+    down = { x: PX(e), y: PY(e), p: pos, t: performance.now(), lx: PX(e), v: 0 };
     moved = false;
   });
   addEventListener('pointermove', e => {
@@ -373,7 +375,7 @@
       kick();
     }
     if (!down) return;
-    const dx = e.clientX - down.x, dy = e.clientY - down.y;
+    const dx = PX(e) - down.x, dy = PY(e) - down.y;
     if (!moved) {
       if (Math.abs(dx) < 6) return;
       if (Math.abs(dy) > Math.abs(dx) && e.pointerType !== 'mouse') { down = null; return; }
@@ -383,8 +385,8 @@
     }
     const now = performance.now();
     const dt = Math.max(1, now - down.t);
-    down.v = down.v * 0.6 + ((e.clientX - down.lx) / dt) * 0.4;
-    down.t = now; down.lx = e.clientX;
+    down.v = down.v * 0.6 + ((PX(e) - down.lx) / dt) * 0.4;
+    down.t = now; down.lx = PX(e);
     const unit = stage.clientWidth < 700 ? 170 : 230;
     pos = down.p - dx / unit;
     kick();
@@ -623,13 +625,13 @@
   }, { passive: false });
   let vDrag = null;
   winView.addEventListener('pointerdown', e => {
-    vDrag = { y: e.clientY, v: +kS.value };
+    vDrag = { y: PY(e), v: +kS.value };
     winView.setPointerCapture(e.pointerId);
     cancelAnimationFrame(demoRaf);
   });
   winView.addEventListener('pointermove', e => {
     if (!vDrag) return;
-    kS.value = clamp(vDrag.v - (e.clientY - vDrag.y) / (winView.clientHeight * 2.2), 0, 1);
+    kS.value = clamp(vDrag.v - (PY(e) - vDrag.y) / (winView.clientHeight * 2.2), 0, 1);
     applyKnobs();
   });
   winView.addEventListener('pointerup', () => { vDrag = null; });

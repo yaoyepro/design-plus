@@ -9,7 +9,19 @@
 <script>
   (function () {
     document.documentElement.dataset.theme = 'light';
-    document.documentElement.classList.add('js');
+    var h = document.documentElement;
+    h.classList.add('js');
+    function fit() {
+      var w = innerWidth, ht = innerHeight;
+      var on = w <= 820 && ht > w * 1.15 && matchMedia('(pointer:coarse)').matches;
+      window.__rot = on ? w : 0;
+      h.classList.toggle('rot', on);
+      if (on) { h.style.setProperty('--rw', w + 'px'); h.style.setProperty('--rh', ht + 'px'); h.style.setProperty('--vh', w + 'px'); }
+      else { h.style.removeProperty('--vh'); }
+    }
+    fit();
+    addEventListener('resize', fit);
+    addEventListener('orientationchange', fit);
   })();
 </script>
 <link rel="stylesheet" href="assets/fonts.css">

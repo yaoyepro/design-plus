@@ -487,6 +487,21 @@ html.vt * { transition: none !important; }
   .dock { max-width: none; }
 }
 
+/* Portrait phones: render the page as a landscape stage rotated 90deg */
+html.rot, html.rot body { height: 100%; overflow: hidden; }
+html.rot body { position: fixed; left: 0; top: 0; width: var(--rh); height: var(--rw); min-height: 0; transform-origin: 0 0; transform: translateX(var(--rw)) rotate(90deg); }
+html.rot .shell { position: absolute; inset: 0; min-height: 0; overflow-y: auto; overflow-x: hidden; padding-left: max(14px, env(safe-area-inset-top)); padding-right: max(14px, env(safe-area-inset-bottom)); -webkit-overflow-scrolling: touch; }
+html.rot .studio[data-view='orbit'] { height: max(250px, calc(var(--vh) - 160px)); }
+html.rot .studio[data-view='orbit'] .stage { position: absolute; inset: 0; height: auto; margin: 0; }
+html.rot .studio[data-view='orbit'] .headline { display: none; }
+html.rot .studio[data-view='orbit'] .info { position: absolute; right: 0; top: 14px; width: 230px; transform: none; margin: 0; max-height: calc(var(--vh) - 190px); overflow: hidden; }
+html.rot .studio[data-view='orbit'] { margin-top: 8px; }
+html.rot .studio[data-view='orbit'] .stage { right: 240px; }
+html.rot .room-panel { overflow-y: auto; }
+@media (max-width: 860px) {
+  html.rot .shell { padding-bottom: 90px; }
+}
+
 .yy-follow { position: relative; width: 100%; margin: 12px 0 8px; overflow: visible; }
 .yy-follow .p { width: 14px; height: 14px; }
 .yy-follow .cur { position: absolute; right: 18px; bottom: -10px; width: 22px; height: 22px; color: var(--ink); filter: drop-shadow(0 2px 3px rgba(20,30,25,.35)); pointer-events: none; }
