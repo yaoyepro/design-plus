@@ -440,12 +440,11 @@ html.vt * { transition: none !important; }
 .yy-name { margin: 0; display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 600; letter-spacing: -.01em; }
 .yy-leaf { width: 15px; height: 15px; }
 .yy-bio { margin: 2px 0 0; font-size: 12px; color: var(--muted); line-height: 1.45; }
-.yy-tabs { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); padding: 3px; border-radius: 13px; background: color-mix(in oklab, var(--ink) 6%, transparent); }
+.yy-tabs { position: relative; display: grid; grid-template-columns: repeat(2, 1fr); padding: 3px; border-radius: 13px; background: color-mix(in oklab, var(--ink) 6%, transparent); }
 .yy-tabs button { position: relative; z-index: 1; height: 32px; border-radius: 10px; font-size: 13px; color: var(--ink-2); transition: color .3s; }
 .yy-tabs button.on { color: var(--chip-ink); font-weight: 500; }
-.yy-ind { position: absolute; left: 3px; top: 3px; bottom: 3px; width: calc((100% - 6px) / 3); border-radius: 10px; background: var(--chip); transition: transform .5s var(--spring); }
-.yy-pop[data-tab='dy'] .yy-ind { transform: translateX(100%); }
-.yy-pop[data-tab='mail'] .yy-ind { transform: translateX(200%); }
+.yy-ind { position: absolute; left: 3px; top: 3px; bottom: 3px; width: calc((100% - 6px) / 2); border-radius: 10px; background: var(--chip); transition: transform .5s var(--spring); }
+.yy-pop[data-tab='mail'] .yy-ind { transform: translateX(100%); }
 .yy-panes { padding-top: 14px; }
 .yy-pane { display: none; }
 .yy-pop[data-tab='xhs'] [data-pane='xhs'], .yy-pop[data-tab='dy'] [data-pane='dy'], .yy-pop[data-tab='mail'] [data-pane='mail'] { display: block; animation: yyPane .5s var(--ease) both; }
@@ -493,14 +492,29 @@ html.rot body { position: fixed; left: 0; top: 0; width: var(--rh); height: var(
 html.rot .shell { position: absolute; inset: 0; min-height: 0; overflow-y: auto; overflow-x: hidden; padding-left: max(14px, env(safe-area-inset-top)); padding-right: max(14px, env(safe-area-inset-bottom)); -webkit-overflow-scrolling: touch; }
 html.rot .studio[data-view='orbit'] { height: max(250px, calc(var(--vh) - 160px)); }
 html.rot .studio[data-view='orbit'] .stage { position: absolute; inset: 0; height: auto; margin: 0; }
-html.rot .studio[data-view='orbit'] .headline { display: none; }
+html.rot .studio[data-view='orbit'] .headline { position: absolute; left: 4px; top: -2px; right: auto; z-index: 3; }
+html.rot .brand-title { margin: 0; gap: 8px; }
+html.rot .bt-en { font-size: 30px; }
+html.rot .bt-zh { font-size: 16px; }
+html.rot .kicker, html.rot .ghostline { display: none; }
+html.rot .brand-name b { display: inline; }
 html.rot .studio[data-view='orbit'] .info { position: absolute; right: 0; top: 14px; width: 230px; transform: none; margin: 0; max-height: calc(var(--vh) - 190px); overflow: hidden; }
 html.rot .studio[data-view='orbit'] { margin-top: 0; height: max(230px, calc(var(--vh) - 112px)); }
 html.rot .studio[data-view='orbit'] .stage { right: 190px; }
 html.rot .studio[data-view='orbit'] .info { width: 176px; max-height: calc(var(--vh) - 130px); }
 html.rot .studio[data-view='orbit'] .info { display: none; }
 html.rot .studio[data-view='orbit'] .stage { right: 0; }
-html.rot .rig { transform: scale(.68); transform-origin: 50% 50%; transform-style: flat; }
+html.rot .studio[data-view='orbit'] .stage { right: auto; bottom: auto; width: 147%; height: 147%; transform: scale(.68); transform-origin: 0 0; }
+html.rot .rig { transform-style: flat; }
+html.rot .yy-pop { right: 0; bottom: 60px; width: 250px; padding: 8px; border-radius: 18px; }
+html.rot .yy-head, html.rot .yy-cap { display: none; }
+html.rot .yy-panes { padding-top: 8px; }
+html.rot .yy-pop[data-tab='xhs'] [data-pane='xhs'] { display: grid; grid-template-columns: 88px 1fr; gap: 8px; align-items: center; }
+html.rot .yy-qr { grid-row: 1 / 3; width: 88px; height: 88px; padding: 6px; border-radius: 12px; }
+html.rot .yy-follow { margin: 0; height: 40px; font-size: 13px; }
+html.rot .yy-row { height: 34px; padding: 0 8px; }
+html.rot .yy-tabs button { height: 28px; font-size: 12px; }
+html.rot .yy-mail { padding: 8px; }
 html.rot .stage { perspective: none; }
 html.rot .card, html.rot .card-glass { transform-style: flat; }
 html.rot .card-glass { transform: none !important; }
