@@ -112,11 +112,11 @@ a { color: inherit; text-decoration: none; }
 .meta-r { display: flex; align-items: center; gap: 14px; }
 .meta-link em { font-style: normal; color: var(--ink-2); }
 .meta-link:hover em { color: var(--ink); }
-.brand { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); }
+.brand { display: inline-flex; align-items: center; gap: 5px; color: var(--ink); }
 .brand-mark { width: 22px; height: 22px; transition: transform .6s var(--spring); }
 .brand:hover .brand-mark { transform: rotate(-8deg) scale(1.08); }
 .brand-name { font: 600 15px/1 -apple-system, 'PingFang SC', 'HarmonyOS Sans SC', 'Noto Sans SC', 'Microsoft YaHei UI', sans-serif; letter-spacing: .08em; }
-.brand-name b { font-weight: 500; color: var(--muted); margin-left: 4px; }
+.brand-name b { font-weight: 500; color: var(--muted); margin-left: 6px; }
 .lf { fill: var(--leaf); }
 .sp { fill: var(--spark); }
 .chip { padding: 3px 7px; border-radius: 6px; background: var(--glass); box-shadow: inset 0 0 0 1px var(--line); color: var(--ink-2); }
@@ -494,6 +494,8 @@ html.rot .studio[data-view='orbit'] { height: max(250px, calc(var(--vh) - 160px)
 html.rot .studio[data-view='orbit'] .stage { position: absolute; inset: 0; height: auto; margin: 0; }
 html.rot .studio[data-view='orbit'] .headline { position: absolute; left: 6px; right: auto; top: 20%; text-align: left; z-index: 1; transform: translate3d(var(--bgx, 0px), -50%, 0); }
 html.rot .brand-title { margin: 0; justify-content: flex-start; }
+html.rot .brand-name b { display: inline; }
+html.rot .brand { gap: 5px; }
 html.rot .bt-en { font-size: min(34vw, 190px); line-height: .9; letter-spacing: -.05em; opacity: .14; color: var(--ink); }
 html.rot .kicker, html.rot .ghostline { display: none; }
 html.rot .studio[data-view='orbit'] .info { position: absolute; right: 0; top: 14px; width: 230px; transform: none; margin: 0; max-height: calc(var(--vh) - 190px); overflow: hidden; }
