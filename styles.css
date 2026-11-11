@@ -492,12 +492,10 @@ html.rot body { position: fixed; left: 0; top: 0; width: var(--rh); height: var(
 html.rot .shell { position: absolute; inset: 0; min-height: 0; overflow-y: auto; overflow-x: hidden; padding-left: max(14px, env(safe-area-inset-top)); padding-right: max(14px, env(safe-area-inset-bottom)); -webkit-overflow-scrolling: touch; }
 html.rot .studio[data-view='orbit'] { height: max(250px, calc(var(--vh) - 160px)); }
 html.rot .studio[data-view='orbit'] .stage { position: absolute; inset: 0; height: auto; margin: 0; }
-html.rot .studio[data-view='orbit'] .headline { position: absolute; left: 4px; top: -2px; right: auto; z-index: 3; }
-html.rot .brand-title { margin: 0; gap: 8px; }
-html.rot .bt-en { font-size: 30px; }
-html.rot .bt-zh { font-size: 16px; }
+html.rot .studio[data-view='orbit'] .headline { position: absolute; left: 0; right: 0; top: 30%; text-align: center; z-index: 1; transform: translate3d(var(--bgx, 0px), -50%, 0); }
+html.rot .brand-title { margin: 0; justify-content: center; }
+html.rot .bt-en { font-size: min(34vw, 190px); line-height: .9; letter-spacing: -.05em; opacity: .14; color: var(--ink); }
 html.rot .kicker, html.rot .ghostline { display: none; }
-html.rot .brand-name b { display: inline; }
 html.rot .studio[data-view='orbit'] .info { position: absolute; right: 0; top: 14px; width: 230px; transform: none; margin: 0; max-height: calc(var(--vh) - 190px); overflow: hidden; }
 html.rot .studio[data-view='orbit'] { margin-top: 0; height: max(230px, calc(var(--vh) - 112px)); }
 html.rot .studio[data-view='orbit'] .stage { right: 190px; }

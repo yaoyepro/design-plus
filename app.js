@@ -225,6 +225,7 @@
     const n = order.length;
     if (view === 'orbit') {
       const g = stageBox();
+      studio.style.setProperty('--bgx', (Math.sin(pos * 0.45) * 70).toFixed(1) + 'px');
       rig.style.transform = fine.matches && !reduce.matches ? `rotateX(${(-py * 3.2).toFixed(3)}deg) rotateY(${(px * 5).toFixed(3)}deg)` : '';
       cards.forEach((c, i) => {
         const rank = order.indexOf(i);
