@@ -495,7 +495,23 @@ html.rot .studio[data-view='orbit'] { height: max(250px, calc(var(--vh) - 160px)
 html.rot .studio[data-view='orbit'] .stage { position: absolute; inset: 0; height: auto; margin: 0; }
 html.rot .studio[data-view='orbit'] .headline { display: none; }
 html.rot .studio[data-view='orbit'] .info { position: absolute; right: 0; top: 14px; width: 230px; transform: none; margin: 0; max-height: calc(var(--vh) - 190px); overflow: hidden; }
-html.rot .studio[data-view='orbit'] { margin-top: 8px; }
+html.rot .studio[data-view='orbit'] { margin-top: 0; height: max(230px, calc(var(--vh) - 112px)); }
+html.rot .studio[data-view='orbit'] .stage { right: 190px; }
+html.rot .studio[data-view='orbit'] .info { width: 176px; max-height: calc(var(--vh) - 130px); }
+html.rot .studio[data-view='orbit'] .info { display: none; }
+html.rot .studio[data-view='orbit'] .stage { right: 0; }
+html.rot .rig { transform: scale(.68); transform-origin: 50% 50%; }
+html.rot .cmd-field, html.rot .stack-chip { display: none; }
+html.rot .cmd { width: auto; height: 38px; margin-left: auto; padding: 3px; }
+html.rot .meta { padding-bottom: 2px; }
+html.rot .shell { padding-top: 6px; padding-bottom: 60px; }
+html.rot .dock { bottom: 6px; padding: 3px; gap: 4px; }
+html.rot .dock .cats button { height: 30px; padding: 0 9px; font-size: 12px; }
+html.rot .dock .cats button em, html.rot .dock .cats button .n { display: none; }
+html.rot .open-set { height: 32px; padding: 0 10px; font-size: 12px; }
+html.rot .yy { bottom: 52px; }
+html.rot .yy-btn { width: 52px; height: 60px; }
+html.rot .yy-body img { width: 58px; margin-left: -29px; }
 html.rot .studio[data-view='orbit'] .stage { right: 240px; }
 html.rot .room-panel { overflow-y: auto; }
 @media (max-width: 860px) {
