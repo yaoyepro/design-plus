@@ -500,7 +500,10 @@ html.rot .studio[data-view='orbit'] .stage { right: 190px; }
 html.rot .studio[data-view='orbit'] .info { width: 176px; max-height: calc(var(--vh) - 130px); }
 html.rot .studio[data-view='orbit'] .info { display: none; }
 html.rot .studio[data-view='orbit'] .stage { right: 0; }
-html.rot .rig { transform: scale(.68); transform-origin: 50% 50%; }
+html.rot .rig { transform: scale(.68); transform-origin: 50% 50%; transform-style: flat; }
+html.rot .stage { perspective: none; }
+html.rot .card, html.rot .card-glass { transform-style: flat; }
+html.rot .card-glass { transform: none !important; }
 html.rot .cmd-field, html.rot .stack-chip { display: none; }
 html.rot .cmd { width: auto; height: 38px; margin-left: auto; padding: 3px; }
 html.rot .meta { padding-bottom: 2px; }
