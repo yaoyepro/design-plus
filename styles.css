@@ -456,6 +456,7 @@ html.vt * { transition: none !important; }
 .yy-row { width: 100%; display: flex; align-items: center; gap: 10px; height: 42px; padding: 0 12px; border-radius: 13px; text-align: left; box-shadow: inset 0 0 0 1px var(--line); transition: background .3s, transform .4s var(--spring); }
 .yy-row:hover { background: color-mix(in oklab, var(--ink) 5%, transparent); }
 .yy-row:active { transform: scale(.98); }
+.yy-site { margin-top: 8px; color: var(--ink); }
 .yy-row .mono { color: var(--muted); font-size: 10px; flex: none; }
 .yy-row b { flex: 1; min-width: 0; font-weight: 500; font-size: 13px; font-variant-numeric: tabular-nums; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .yy-row .i { width: 15px; height: 15px; color: var(--muted); transition: opacity .25s, transform .4s var(--spring); }
